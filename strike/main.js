@@ -19,24 +19,145 @@ randomName = ["Lily", "Daniel", "Loomy", "Peet", "Stell", "Leyna","cloud","Nina"
  let  randomMusic = ["forest.mp3","witch.mp3"];
   let chosenMusic = Math.floor(Math.random()* randomMusic.length);
    
+
 window.onload = function() {
-       audio = document.getElementById("audio1");
-      audio.controls = false;
-      Swal.fire({
-        icon:'info',
-        title:'Loading resources Please wait!',
-        allowEscapeKey:false,
-        allowOutsideClick:false,
-        showConfirmButton:false,
-        willOpen:() => {
-          Swal.showLoading();
-        },
-        timer:30000
-        
-      });
+    var audio = document.getElementById("audio1");
+    audio.controls = false;
+  
+      var assetsToPreload = [
+        { type: 'audio', src: 'drift.mp3' },
+        { type: 'audio', src: 'witch.mp3' },
+        { type: 'audio', src: 'fast.mp3' },
+        { type: 'audio', src: 'forest.mp3' },
+        { type: 'audio', src: 'sazanthos.mp3' },
+        { type: 'audio', src: 'A.mp3' },
+        { type: 'audio', src: 'B.mp3' },
+        { type: 'audio', src: 'Bankai.mp3' },
+        { type: 'audio', src: 'battle10.wav' },
+        { type: 'audio', src: 'battle12.wav' },
+        { type: 'audio', src: 'battle23.wav' },
+        { type: 'audio', src: 'battle3.wav' },
+        { type: 'audio', src: 'battle34.wav' },
+        { type: 'audio', src: 'battle9.wav' },
+        { type: 'audio', src: 'cut.wav' },
+        { type: 'audio', src: 'cut3.mp3' },
+        { type: 'audio', src: 'cut5.mp3' },
+        { type: 'audio', src: 'cut6.mp3' },
+        { type: 'audio', src: 'E.mp3' },
+        { type: 'audio', src: 'F.mp3' },
+        { type: 'audio', src: 'kk.mp3' },
+        { type: 'audio', src: 'lack.mp3' },
+        { type: 'audio', src: 'll.mp3' },
+        { type: 'audio', src: 'mm.mp3' },
+        { type: 'audio', src: 'nn.mp3' },
+        { type: 'audio', src: 'oo.mp3' },
+        { type: 'audio', src: 'over.mp3' },
+        { type: 'audio', src: 'potion.mp3' },
+        { type: 'audio', src: 'sample2.wav' },
+        { type: 'audio', src: 'sample5.wav' },
+        { type: 'audio', src: 'shao.mp3' },
+        { type: 'audio', src: 'Useless.m4a' },
+        { type: 'audio', src: 'Weak.m4a' },
+        { type: 'audio', src: 'zack.png' },
       
-      
-   }
+        { type: 'image', src: 'axe.png' },
+        { type: 'image', src: 'best.png' },
+        { type: 'image', src: 'blood2.jpg' },
+        { type: 'image', src: 'burst.png' },
+        { type: 'image', src: 'burst2.png' },
+        { type: 'image', src: 'burst5.png' },
+        { type: 'image', src: 'buster.png' },
+        { type: 'image', src: 'chaos.png' },
+        { type: 'image', src: 'cloud2.png' },
+        { type: 'image', src: 'dark.png' },
+        { type: 'image', src: 'fan.jpg' },
+        { type: 'image', src: 'fire.png' },
+        { type: 'image', src: 'got.jpg' },
+        { type: 'image', src: 'ley.png' },
+        { type: 'image', src: 'noctis.png' },
+        { type: 'image', src: 'noctis3.png' },
+        { type: 'image', src: 'plan.jpg' },
+        { type: 'image', src: 'seph.png' },
+        { type: 'image', src: 'seph4.png' },
+        { type: 'image', src: 'sephE.png' },
+        { type: 'image', src: 'sword1.png' },
+        { type: 'image', src: 'sword2.png' },
+        { type: 'image', src: 'sword3.png' },
+        { type: 'image', src: 'sword4.png' },
+        { type: 'image', src: 'sword5.png' },
+        { type: 'image', src: 'sword6.png' },
+        { type: 'image', src: 'sword7.png' },
+        { type: 'image', src: 'Terra.png' },
+        { type: 'image', src: 'Terra2.png' },
+        { type: 'image', src: 'V.png' },
+        { type: 'image', src: 'V1.png' },
+        { type: 'image', src: 'V2.png' },
+        { type: 'image', src: 'V3.png' },
+        { type: 'image', src: 'wall.jpeg' },
+        { type: 'image', src: 'wall2.jpeg' },
+        { type: 'image', src: 'wall3.jpg' },
+        { type: 'image', src: 'wall4.jpg' },
+        { type: 'image', src: 'wall5.jpg' },
+        ];
+  
+    showLoader(); // Show SweetAlert loader
+  
+    preloadAssets(assetsToPreload, function() {
+      hideLoader(); // Hide SweetAlert loader when assets are loaded
+      startGame(); // Call your game initialization function
+    });
+  };
+  
+  function preloadAssets(assetList, callback) {
+    var loadedCount = 0;
+  
+    function assetLoaded() {
+      loadedCount++;
+      if (loadedCount === assetList.length) {
+        callback();
+      }
+    }
+  
+    assetList.forEach(function(asset) {
+      if (asset.type === 'image') {
+        var img = new Image();
+        img.onload = assetLoaded;
+        img.src = asset.src;
+      } else if (asset.type === 'audio') {
+        var audio = new Audio();
+        audio.onloadeddata = assetLoaded;
+        audio.src = asset.src;
+      }
+    });
+  }
+  
+  function showLoader() {
+    Swal.fire({
+      title: 'Loading resources, please wait!',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      showCancelButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  }
+  
+  function hideLoader() {
+    Swal.close();
+  }
+  
+  function startGame() {
+    // Your existing code to start the game
+    Swal.fire({
+      icon: 'success',
+      title: 'Complete',
+      allowOutsideClick: false,
+      showConfirmButton: true
+    });
+  }
+
+//};
    function HealEffect(){
    let healEffect =  new Audio("potion.mp3");
    healEffect.play();
