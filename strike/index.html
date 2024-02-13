@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+  <title>Combat strike 2</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script> <!-- Use the latest version -->
+
+<body>
+<audio id="audio1" autoplay controls="false" loop>
+      <source src="forest.mp3" type="audio/mp3">
+    </audio>
+    
+      <div id="intro">
+        <h1>Combat Strike 2</h1>
+        <h2>Rules</h2>
+        <p>Your aim is to defeat your opponent.</p>
+        <p>If your HP reaches 0, you lose, likewise your opponent.
+          Input your name first then
+          Press start to begin and end to quit</p>
+    
+        <form id="lot" onsubmit="run(); return false;">
+          <input type="text" id="name" placeholder="Enter your name" required>
+          <button id="safe">Save</button>
+          <br>
+          <br>
+          <button class="work" onclick="showloader()">start</button>
+          <button class="work2" onclick="Work2()">end</button><br>
+          <br>
+          <br>
+        </form>
+        <footer><u><strong>&copy Nicholas Johnson all rights reserved </strong></u></footer>
+    
+      </div>
+    
+  <div id="loader"></div>
+  <nav>
+  <div class = "icon" onclick=" Menu()">
+ &#8801;<ul id = "link">
+      <li>
+        <a href = "#menu" onclick="Home()">
+          Home
+        </a>
+      </li>
+    </ul>
+    </div>
+  </nav>
+  <label id = "turn">Skill used:</label><input id = "turn2" readonly>
+  <label id = "skill">Skillpoints:</label><input id = "skill1"readonly>
+  <label id = "heal1">Healpoints:</label>
+  <input id = "heal2"readonly>
+  <<textarea id = "text" readonly></textarea>
+  <div class = "character" id = "player">
+    <<img src="best.png" id = "best" alt = "player">
+    <<img src="buster.png" alt="player" id = "sword">
+  </div>
+  <div class = "character2" id = "enemy">
+    <<img src="zack.png" alt="enemy" id = "zack">
+ 
+    <<img src="burst2.png" alt="enemy" id = "sword2">
+  </div>
+  <div id = "health">
+    <div id = "healthContainer"></div>
+  </div>
+  
+  <div id = "health2">
+    <div id = "health2Container"></div>
+  </div>
+  
+    <div id = "container">
+      <button id = "btn" onclick="normal()">Attack</button>
+      
+      <button id = "btn2" onclick="special()">Special attack</button>
+      
+      <button id = "btn3" onclick="heal()">Healing</button>
+    </div>
+  
+  
+   <select name = "magic" id = "first" onchange="handleSelect()">
+     <<option value="Slice">Slice</option>
+     <<option value="Break">Break</option>
+    <<option value="Blizard">Blizard</option>
+     <<option value="Water">Water</option>
+     <<option value="Firaga">Firaga</option>
+     <<option value="Strike">Strike</option>
+     <<option value="Crack">Crack</option>
+     <<option value="Rip">Rip</option>
+   </select>
+   
+   
+   <select  id="second" onchange = "handleHealing()">
+     <<option value="Potion">Potion</option>
+     <<option value="Elixer">Elixer</option></option>
+     <<option value="Remedy">Remedy</option>
+     <<option value="Coffee">Coffee</option>
+     <<option value="Hipotion">Hipotion</option>
+     <<option value="wine">wine
+     </option>
+   </select>
+  
+  <script src="main.js"></script>
+</body>
+</html>

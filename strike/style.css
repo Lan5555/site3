@@ -1,0 +1,376 @@
+
+body {
+   
+    background-image: url("plan.jpg");
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#text {
+    margin-top:40px;
+    height: 345px;
+    width: 345px;
+    margin-top: 60px;
+    background-image: url("fan.jpg");
+    border-radius: 30px;
+    box-shadow: 3px 4px 8px;
+    color:darkred;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.character {
+    position: relative; /* Add this for positioning */
+    display: none;
+}
+.character2{
+  position: relative;
+  display: none;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.character {
+  animation: bounce 2s infinite; /* Adjust the duration and animation type as needed */
+}
+.character{
+  animation: bounce 2s infinite;
+}
+  
+#container {
+    display: flex;
+     justify-content: space-between;
+     display: none;
+}
+
+#best {
+    width: 120px;
+    z-index: 100;
+    margin-bottom: 60px;
+    top: 50%;
+    right: -5%;
+    position: absolute; /* Add this for positioning */
+    transform: translateY(-200%); /* Adjust to vertically center the image */
+
+}
+
+@keyframes attackAnimation {
+    0%, 100% { transform: translateX(0); } /* Initial and final positions are the same */
+    50% { transform: translateX(50%); } /* Move a little to the right at the midpoint */
+}
+
+
+#zack {
+    width: 95px;
+    z-index: 100;
+    margin-bottom: 60px;
+    top: 50%;
+    left: 3%;
+    position: absolute; /* Add this for positioning */
+    transform: translateY(-200%); /* Adjust to vertically center the image */
+
+}
+
+@keyframes attackAnimation2 {
+    10%, 100% { transform: translateX(0); } /* Initial and final positions are the same */
+    50% { transform: translateX(-50%); } /* Move a little to the right at the midpoint */
+}
+
+
+
+#sword{
+  z-index: 100;
+  position: absolute;
+  top:-1000%;
+  width: 200px;
+  height: 100px;
+  display: none;
+  
+  
+  
+}
+
+
+@keyframes swordAnimation {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  50% { opacity: 0.5; transform: translateY(-120px) rotate(90deg); }
+  100% { opacity: 0; transform: translateY(-60px) rotate(45deg); }
+}
+
+    @keyframes vibrationAnimation {
+      0%, 100% { transform: translateX(0); }
+      25%, 75% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+    }
+    
+    #btn  {
+      width:110px;
+      height: 70px;
+      border-radius:20px;
+      background-color: darkred;
+      color: burlywood;
+      box-shadow: 3px 5px 4px;
+      margin-bottom: 40px;
+      margin-left: 8px;
+    }
+    #btn2{
+      width:100px;
+      height: 70px;
+      border-radius:20px;
+      background-color: darkred;
+      color: burlywood;
+      box-shadow: 3px 5px 4px;
+      margin-bottom: 40px;
+    }
+    #btn3{
+      width:110px;
+      height: 70px;
+      border-radius:20px;
+      background-color: darkred;
+      color: burlywood;
+      box-shadow: 3px 5px 4px;
+      margin-bottom: 40px;
+    }
+    
+    #first {
+      display:none;
+      margin-left: 145px;
+      position: absolute;
+      color: burlywood;
+     bottom: 20;
+      border-radius: 20px;
+      background-color: darkred;
+      
+    }
+    #second {
+      display:none;
+      margin-left: 255px;
+      bottom: 20;
+      position: absolute;
+      color: darkred;
+      border-radius: 20px;
+      background-color: darkred;
+      color: burlywood;
+    }
+    #health{
+      border:1px solid #000;
+      border-radius: 20px;
+      width:170px;
+      height: 10px;
+      position: absolute;
+      top: 0;
+      overflow: hidden;
+      margin-top:80px;
+      display: none;
+    }
+    #healthContainer{
+      width: 100%;
+      height: 100%;
+      background-color: green;
+      transition: width 0.3s ease;
+      display: none;
+    }
+    
+    #health2 {
+      border:1px solid #000;
+      border-radius: 20px;
+      width:170px;
+      height: 10px;
+    
+     /* top:15%;*/
+      overflow: hidden;
+      margin-left: 180px;
+      margin-top: 100px;
+      position: absolute;
+      top: 0;
+      display: none;
+    }
+    #health2Container{
+      width: 100%;
+      height: 100%;
+      background-color: red;
+      transition: width 0.3s ease;
+      display: none;
+    }
+    #skill{
+      color: darkred;
+      display: none;
+    }
+    #heal1{
+      color:darkred;
+      margin-left: 60px;
+      
+      display: none;
+      
+    }
+    #skill1 {
+      width: 15px;
+      margin-top: 22px;
+      background-color: darkred;
+      display: none;
+      color: lightblue;
+    }
+    #heal2{
+      width:15px;
+      margin-top:22px;
+      background-color: darkred;
+      display: none;
+      color: lightblue;
+      
+    }
+    #turn{
+      color:darkred;
+      margin-left: 170px;
+      display: none;
+    }
+    #turn2{
+      margin-left:9px;
+      width: 20px;
+      background-color: darkred;
+      display: none;
+      color: lightblue;
+    }
+    #text{
+      display: none;
+    }
+    
+.work{ 
+    box-shadow : 4px 3px 4px; 
+    border-radius:10px;
+    width:50px;
+    height:30px;
+    margin-left: 90px;
+    margin-top: 20px;
+    display: none;
+    color:green;
+}
+.work2{
+    box-shadow : 4px 3px 4px;
+    border-radius:10px;
+    margin-left:190px;
+    width:50px;
+    height:30px;
+    display: none;
+    margin-bottom: 20px;
+    color: red;
+    
+}
+#name {
+  border-radius: 10px;
+  box-shadow: 2px 3px 3px;
+  color: darkred;
+  color:red;
+  background-color: black;
+}
+#safe {
+  border-radius: 10px;
+  box-shadow: 2px 3px 3px;
+  color:darkred;
+  background-color: black;
+}
+
+select option {
+  border-radius: 90px;
+  box-shadow: 7px 8px 10px;
+  color: darkred;
+  background-color: darkred !important;
+  padding:60px;
+}
+
+h1, h2, p{
+  margin-top: 40px;
+    color: red;
+    text-align: center;
+  }
+  
+  footer {
+    color: red;
+    padding: 30px;
+    border: 20px;
+    border-radius: 30px;
+    
+  }
+
+#loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    align: center;
+    display: none;
+    position: absolute;
+    top: 0;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  
+  }
+  
+#sword2 {
+  z-index: 100;
+  position: absolute;
+  top: -1000%;
+  width: 200px;
+  height: 100px;
+  display: none;
+  
+}
+
+@keyframes swordAnimation2 {
+  0% { opacity: 1; transform: translateY(0) rotate(-90deg); } /* Start with the sword facing right */
+  50% { opacity: 0.5; transform: translateY(-120px) rotate(180deg); } /* Midpoint, rotate to face left */
+  100% { opacity: 0; transform: translateY(-60px) rotate(135deg); } /* End with a slight angle */
+}
+
+@keyframes vibrationAnimation2 {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+}
+
+nav{
+  color:white;
+  position:absolute;
+  top:0;
+  z-index: 100;
+  left:10%;
+  top:2%;
+  
+}
+
+a  {
+  position: absolute;
+  top:0;
+  
+}
+li {
+  position:absolute;
+  top:0;
+  
+}
+.icon{
+  font-size: 17px;
+}
+
+/*snow flake*/
+
