@@ -139,7 +139,8 @@ window.onload = function() {
       showCancelButton: false,
       willOpen: () => {
         Swal.showLoading();
-      }
+      },
+     timer:30000
     });
   }
   
