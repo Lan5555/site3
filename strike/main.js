@@ -8,6 +8,7 @@ let max = 1000;
  let healpoints2 = 5;
  let bankaiSkill = 0;
  
+
  
  var element = document.querySelector(".character");
  var element2 = document.querySelector(".character2");
@@ -21,6 +22,18 @@ randomName = ["Lily", "Daniel", "Loomy", "Peet", "Stell", "Leyna","cloud","Nina"
 window.onload = function() {
        audio = document.getElementById("audio1");
       audio.controls = false;
+      Swal.fire({
+        icon:'info',
+        title:'Loading resources Please wait!',
+        allowEscapeKey:false,
+        allowOutsideClick:false,
+        showConfirmButton:false,
+        willOpen:() => {
+          Swal.showLoading();
+        },
+        timer:30000
+        
+      });
       
       
    }
