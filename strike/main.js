@@ -113,24 +113,35 @@ window.onload = function() {
   
     function assetLoaded() {
       loadedCount++;
+      
+    console.log(`Asset loaded: ${loadedCount}/${assetList.length}`);
       if (loadedCount === assetList.length) {
         callback();
       }
     }
-  
-    assetList.forEach(function(asset) {
-      if (asset.type === 'image') {
-        var img = new Image();
-        img.onload = assetLoaded;
-        img.src = asset.src;
-      } else if (asset.type === 'audio') {
-        var audio = new Audio();
-        audio.onloadeddata = assetLoaded;
-        audio.src = asset.src;
+    
+      function handleLoadError(asset) {
+        console.error(`Failed to load asset: ${asset.src}`);
+        assetLoaded(); // Consider the asset as loaded to continue the process
       }
-    });
+  
+  
+  assetList.forEach(function(asset) {
+    if (asset.type === 'image') {
+      var img = new Image();
+      img.onload = assetLoaded;
+      img.onerror = function() { handleLoadError(asset); };
+      img.src = asset.src;
+    } else if (asset.type === 'audio') {
+      var audio = new Audio();
+      audio.onloadeddata = assetLoaded;
+      audio.onerror = function() { handleLoadError(asset); };
+      audio.src = asset.src;
+    }
+  });
   }
   
+
   function showLoader() {
     Swal.fire({
       title: 'Loading resources, please wait!',
@@ -139,8 +150,7 @@ window.onload = function() {
       showCancelButton: false,
       willOpen: () => {
         Swal.showLoading();
-      },
-     timer:30000
+      }
     });
   }
   
