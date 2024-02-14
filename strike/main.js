@@ -19,9 +19,9 @@ randomName = ["Lily", "Daniel", "Loomy", "Peet", "Stell", "Leyna","cloud","Nina"
  let  randomMusic = ["forest.mp3","witch.mp3"];
   let chosenMusic = Math.floor(Math.random()* randomMusic.length);
    
-
+let audio = document.getElementById("audio1");
 window.onload = function() {
-    var audio = document.getElementById("audio1");
+    
     audio.controls = false;
   
       var assetsToPreload = [
