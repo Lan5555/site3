@@ -319,7 +319,7 @@ function Work() {
                 { name: 'Cloud', path: 'best.png' },
                 { name: 'Sephiroth', path: 'dark.png' },
                 { name: 'stark', path :'seph.png' },
-                { name: 'Layla', path: 'terra.png' },
+                { name: 'Layla', path: 'Terra.png' },
                   {name:'Noctis',path:'noctis3.png'},{name:'CloudX',path:'cloud2.png'},{name:'Aqua',path:'ley.png'},{name:'NoctisX',path:'noctis.png'},{
                     name:'NJ',path:'seph4.png'
                   }];
