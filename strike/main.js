@@ -104,9 +104,13 @@ window.onload = function() {
     showLoader(); // Show SweetAlert loader
   
     preloadAssets(assetsToPreload, function() {
-      hideLoader(); // Hide SweetAlert loader when assets are loaded
+     
+     setTimeout(() => {
       startGame(); // Call your game initialization function
+     },30000);
+      
     });
+    
   };
   
   function preloadAssets(assetList, callback) {
@@ -151,7 +155,8 @@ window.onload = function() {
       showCancelButton: false,
       willOpen: () => {
         Swal.showLoading();
-      }
+      },
+     timer:32000
     });
   }
   
