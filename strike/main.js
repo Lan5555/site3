@@ -144,7 +144,7 @@ window.onload = function() {
       img.src = asset.src;
     } else if (asset.type === 'audio') {
       var audio = new Audio();
-      audio.onloadeddata = assetLoaded;
+      audio.onload = assetLoaded;
       audio.onerror = function() { handleLoadError(asset); };
       audio.src = asset.src;
     }
@@ -155,7 +155,7 @@ window.onload = function() {
 function showLoader() {
   loader = Swal.fire({
     title: 'Loading resources please wait!',
-    html: '<div id="loading-progress">LProgress</div>',
+    html: '<div id="loading-progress">Progress</div>',
     allowOutsideClick: false,
     showConfirmButton: false,
     showCancelButton: false,
@@ -168,7 +168,7 @@ function showLoader() {
 
 function updateLoaderProgress(progress, total) {
       const percentLoaded = Math.round((progress / total) * 100);
-      const progressText = `Loading... ${percentLoaded}%`;
+      const progressText = `Progress... ${percentLoaded}%`;
       document.getElementById('loading-progress').innerHTML = progressText;
     }
     
