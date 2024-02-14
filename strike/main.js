@@ -1285,6 +1285,15 @@ if (bankaiSkill == 20 || bankaiSkill == 21 || bankaiSkill == 22 || bankaiSkill==
           }).then((result) => {
             if(AiHp <= 0){
               AiHp = 0;
+
+         if (!tan2.paused) {
+          tan2.pause();
+        }
+        if (!audio3.paused) {
+          audio3.pause();
+        }
+   
+             
               updateHealthDisplay();
               startNextWave();
             }else{
