@@ -20,81 +20,12 @@ randomName = ["Lily", "Daniel", "Loomy", "Peet", "Stell", "Leyna","cloud","Nina"
   let chosenMusic = Math.floor(Math.random()* randomMusic.length);
    
 let audio = document.getElementById("audio1");
-
-
-    
-let loader;
-
-function showLoader() {
-  loader = Swal.fire({
-    title: 'Loading...',
-    allowOutsideClick: false,
-    showConfirmButton: false,
-    showCancelButton: false,
-    didOpen: () => {
-      Swal.showLoading();
-    }
-  });
-}
-
-function startGame(){
-      Swal.fire({
-        icon:'success',
-        title:'completed',
-        showConfirmButton:true,
-        confirmButtonColor:'green',
-        allowOutsideClick:false,
-        didOpen: () => {
-          Swal.close();
-        }
-      });
-    }
-    
-
-function hideLoader() {
-  if (loader) {
-    loader.close();
-  }
-}
-
-async function preloadAssets(assetList) {
-  showLoader();
-
-  try {
-    for (let index = 0; index < assetList.length; index++) {
-      const asset = assetList[index];
-      await new Promise((resolve, reject) => {
-        const element = asset.type === 'image' ? new Image() : new Audio();
-
-        element.onload = () => {
-          console.log(`Asset loaded: ${index + 1}/${assetList.length}`);
-          resolve();
-        };
-
-        element.onerror = () => {
-          console.error(`Failed to load asset: ${asset.src}`);
-          reject(new Error(`Failed to load asset: ${asset.src}`));
-        };
-
-        element.src = asset.src;
-      });
-    }
-  } catch (error) {
-    console.error(error.message);
-  } finally {
-    hideLoader();
-  }
-}
-
-
 window.onload = function() {
     
     audio.controls = false;
     audio.pause();
-    
-(async () => {
   
-      const assetsToPreload = [
+      var assetsToPreload = [
         { type: 'audio', src: 'drift.mp3' },
         { type: 'audio', src: 'witch.mp3' },
         { type: 'audio', src: 'fast.mp3' },
@@ -170,19 +101,80 @@ window.onload = function() {
         { type: 'image', src: 'wall5.jpg' },
         ];
   
-      try {
-        await preloadAssets(assetsToPreload);
-        startGame();
-      } catch (error) {
-        console.error(error.message);
-      }
-    
-})();
-    //});
-    
-}
+    showLoader(); // Show SweetAlert loader
   
+    preloadAssets(assetsToPreload, function() {
+     
+      hideLoader();
+      startGame(); // Call your game initialization function
+     
+      
+    });
     
+  
+  
+  function preloadAssets(assetList, callback) {
+    var loadedCount = 0;
+  
+    function assetLoaded() {
+      loadedCount++;
+      
+    console.log(`Asset loaded: ${loadedCount}/${assetList.length}`);
+      if (loadedCount === assetList.length) {
+        callback();
+      }
+    }
+    
+      function handleLoadError(asset) {
+        console.error(`Failed to load asset: ${asset.src}`);
+        assetLoaded(); // Consider the asset as loaded to continue the process
+      }
+  
+  
+  assetList.forEach(function(asset) {
+    if (asset.type === 'image') {
+      var img = new Image();
+      img.onload = assetLoaded;
+      img.onerror = function() { handleLoadError(asset); };
+      img.src = asset.src;
+    } else if (asset.type === 'audio') {
+      var audio = new Audio();
+      audio.onloadeddata = assetLoaded;
+      audio.onerror = function() { handleLoadError(asset); };
+      audio.src = asset.src;
+    }
+  });
+  }
+  
+
+  function showLoader() {
+    Swal.fire({
+      title: 'Loading resources, please wait!',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      showCancelButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      }
+     
+    });
+  }
+  
+  function hideLoader() {
+    Swal.close();
+  }
+  
+  function startGame() {
+    // Your existing code to start the game
+    Swal.fire({
+      icon: 'success',
+      title: 'Complete',
+      allowOutsideClick: false,
+      showConfirmButton: true
+    });
+  }
+}
+
 //};
    function HealEffect(){
    let healEffect =  new Audio("potion.mp3");
@@ -334,7 +326,7 @@ function Work() {
                 { name: 'Cloud', path: 'best.png' },
                 { name: 'Sephiroth', path: 'dark.png' },
                 { name: 'stark', path :'seph.png' },
-                { name: 'Layla', path: 'terra.png' },
+                { name: 'Layla', path: 'Terra.png' },
                   {name:'Noctis',path:'noctis3.png'},{name:'CloudX',path:'cloud2.png'},{name:'Aqua',path:'ley.png'},{name:'NoctisX',path:'noctis.png'},{
                     name:'NJ',path:'seph4.png'
                   }];
@@ -708,7 +700,7 @@ function handleHealing(){
      fs2 = 2;
      frs2 = Math.floor(Math.random() * (fs2 - fr2 + 1) + 1);
      if (frs2 === 2) {
-      // sound();
+       sound();
      } else {
      
      }
@@ -857,7 +849,7 @@ function begin() {
  
  function Aiplay(){
   if(currentWave == 3){
-    sound();
+     sound();
   }
    effect();
    let d = 1;
@@ -910,7 +902,7 @@ function begin() {
  
   function AiSkill(){
    if(currentWave == 3){
-   sound();
+    sound();
    }
     effect();
     
@@ -1300,19 +1292,16 @@ if (bankaiSkill == 20 || bankaiSkill == 21 || bankaiSkill == 22 || bankaiSkill==
           }).then((result) => {
             if(AiHp <= 0){
               AiHp = 0;
+
+         if (!tan2.paused) {
+          tan2.pause();
+        }
+        if (!audio3.paused) {
+          audio3.pause();
+        }
+   
+             
               updateHealthDisplay();
-              
-              if (!tan2.paused) {
-                tan2.pause();
-              }
-              if (!audio3.paused) {
-                audio3.pause();
-              }
-              //finalBoss = new Audio("sazanthos.mp3");
-              //finalBoss.play();
-              //finalBoss.loop = true;
-              
-              
               startNextWave();
             }else{
               
