@@ -58,7 +58,7 @@ window.onload = function() {
         { type: 'audio', src: 'shao.mp3' },
         { type: 'audio', src: 'Useless.m4a' },
         { type: 'audio', src: 'Weak.m4a' },
-        { type: 'audio', src: 'zack.png' },
+        { type: 'image', src: 'zack.png' },
       
         { type: 'image', src: 'axe.png' },
         { type: 'image', src: 'best.png' },
