@@ -23,6 +23,7 @@ let audio = document.getElementById("audio1");
 window.onload = function() {
     
     audio.controls = false;
+    audio.pause();
   
       var assetsToPreload = [
         { type: 'audio', src: 'drift.mp3' },
