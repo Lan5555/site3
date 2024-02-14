@@ -119,7 +119,12 @@ window.onload = function() {
     function assetLoaded() {
       loadedCount++;
       
-    console.log(`Asset loaded: ${loadedCount}/${assetList.length}`);
+      
+        updateLoaderProgress(loadedCount, assetList.length);
+        
+      
+    
+    
       if (loadedCount === assetList.length) {
         callback();
       }
@@ -146,22 +151,32 @@ window.onload = function() {
   });
   }
   
+ 
+function showLoader() {
+  loader = Swal.fire({
+    title: 'Loading resources please wait!',
+    html: '<div id="loading-progress">LProgress</div>',
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    showCancelButton: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+}
 
-  function showLoader() {
-    Swal.fire({
-      title: 'Loading resources, please wait!',
-      allowOutsideClick: false,
-      showConfirmButton: false,
-      showCancelButton: false,
-      willOpen: () => {
-        Swal.showLoading();
-      }
-     
-    });
-  }
+
+function updateLoaderProgress(progress, total) {
+      const percentLoaded = Math.round((progress / total) * 100);
+      const progressText = `Loading... ${percentLoaded}%`;
+      document.getElementById('loading-progress').innerHTML = progressText;
+    }
+    
   
   function hideLoader() {
-    Swal.close();
+    if(loader){
+    loader.close();
+    }
   }
   
   function startGame() {
