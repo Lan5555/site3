@@ -111,52 +111,46 @@ window.onload = function() {
       
     });
     
-function preloadAssets(assetList, callback) {
-      let loadedCount = 0;
-      assetLoaded();
-    
-      function assetLoaded() {
-        loadedCount++;
+  
+  
+  function preloadAssets(assetList, callback) {
+    var loadedCount = 0;
+  
+    function assetLoaded() {
+      loadedCount++;
+      
+      
         updateLoaderProgress(loadedCount, assetList.length);
+        
+      
     
-        if (loadedCount === assetList.length) {
-          hideLoader();
-          callback();
-        }
+    
+      if (loadedCount === assetList.length) {
+        callback();
       }
+    }
     
       function handleLoadError(asset) {
         console.error(`Failed to load asset: ${asset.src}`);
         assetLoaded(); // Consider the asset as loaded to continue the process
       }
-    
-      async function loadAsset(asset) {
-        return new Promise((resolve) => {
-          const element = asset.type === 'image' ? new Image() : new Audio();
-    
-          element.addEventListener('load', () => {
-            assetLoaded();
-            resolve();
-          });
-    
-          element.addEventListener('error', () => {
-            handleLoadError(asset);
-            resolve(); // Resolve even on error to continue the process
-          });
-    
-          element.src = asset.src;
-        });
-      }
-    
-      (async () => {
-        for (const asset of assetList) {
-          await loadAsset(asset);
-        }
-    
-        callback();
-      })();
+  
+  
+  assetList.forEach(function(asset) {
+    if (asset.type === 'image') {
+      var img = new Image();
+      img.onload = assetLoaded;
+      img.onerror = function() { handleLoadError(asset); };
+      img.src = asset.src;
+    } else if (asset.type === 'audio') {
+      var audio = new Audio();
+      audio.onloadeddata = assetLoaded;
+      audio.onerror = function() { handleLoadError(asset); };
+      audio.src = asset.src;
     }
-
+  });
+  }
+  
  
 function showLoader() {
   loader = Swal.fire({
@@ -174,7 +168,7 @@ function showLoader() {
 
 function updateLoaderProgress(progress, total) {
       const percentLoaded = Math.round((progress / total) * 100);
-      const progressText = `Loading... ${percentLoaded}%`;
+      const progressText = `Progress... ${percentLoaded}%`;
       document.getElementById('loading-progress').innerHTML = progressText;
     }
     
