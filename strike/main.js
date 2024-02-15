@@ -144,7 +144,7 @@ window.onload = function() {
       img.src = asset.src;
     } else if (asset.type === 'audio') {
       var audio = new Audio();
-      audio.oncanplaythrough = assetLoaded;
+      audio.oncanplaythrough = audio.onload = assetLoaded;
       audio.onerror = function() { handleLoadError(asset); };
       audio.src = asset.src;
     }
