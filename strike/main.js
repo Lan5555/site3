@@ -327,13 +327,14 @@ function Work() {
         willOpen: () => {
           Swal.showLoading();
         },
-        willClose: () => {
-          Swal.fire({
+        }).then(() => {
+          return Swal.fire({
             title: `Players Found:${randomName[chosenName]}`,
             text: 'You are ready to start the game.',
             icon: 'success',
             confirmButtonText: 'Start Game',
             allowOutsideClick:false
+            });
           }).then((result) => {
             if(result.isConfirmed){
               
@@ -449,13 +450,14 @@ function Work() {
               
             }
           });
-        }
-      });
+        
+   //   });
+     
         setTimeout(function() {
           hideLoader();
         }, 4000);
         document.getElementById("loader").style.display = "flex";
-        }
+       }
     
 
     function hideLoader() {
