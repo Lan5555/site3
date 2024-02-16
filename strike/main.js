@@ -312,153 +312,154 @@ function Work() {
       let fr4 = 1
      let fr5 = 2;
       let frr = Math.floor(Math.random() * (fr5 - fr4 + 1) + 1);
-//loader
-    function showloader() {
       
-        Swal.fire({
-        title: 'Searching for Players',
-        html: 'Please wait',
+      
+      
+      
+const characters = [
+            { name: 'Cloud', path: 'best.png' },
+            { name: 'Sephiroth', path: 'dark.png' },
+            { name: 'stark', path: 'seph.png' },
+            { name: 'Layla', path: 'Terra.png' },
+            { name: 'Noctis', path: 'noctis3.png' },
+            { name: 'CloudX', path: 'cloud2.png' },
+            { name: 'Aqua', path: 'ley.png' },
+            { name: 'NoctisX', path: 'noctis.png' },
+            { name: 'NJ', path: 'seph4.png' }
+                ];
+          
+          const sword = [
+            { name: 'Ultima', path: 'sword7.png' },
+            { name: 'buster', path: 'buster.png' },
+            { name: 'Soul cutter', path: 'burst5.png' },
+            { name: 'Gilian', path: 'sword6.png' },
+            { name: 'death bringer', path: 'sword2.png' },
+            { name: 'Ragnarok', path: 'sword3.png' },
+            { name: 'Automata', path: 'fire.png' }
+                ];
+                
+    const background = [
+        { name: 'dispair', path: 'fan.jpg' },
+        { name: 'Purge', path: 'blood2.jpg' },
+        { name: 'Tale of vigor', path: 'got.jpg' },
+        { name: 'Transfiguration', path: 'wall.jpeg' },
+        { name: 'Tenebre', path: 'wall2.jpeg' },
+        { name: 'Resolve', path: 'wall3.jpg' },
+        { name: 'Mondstat', path: 'wall4.jpg' },
+        { name: 'Sumeru', path: 'wall5.jpg' }
+      ];
+
+//loader
+function showloader() {
+  Swal.fire({
+    title: 'Searching for Players',
+    html: 'Please wait',
+    icon: 'info',
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    timer: 4000,
+    willOpen: () => {
+      Swal.showLoading();
+    },
+  }).then(() => {
+    return Swal.fire({
+      title: `Players Found:${randomName[chosenName]}`,
+      text: 'You are ready to start the game.',
+      icon: 'success',
+      confirmButtonText: 'Start Game',
+      allowOutsideClick: false,
+    });
+  }).then((result) => {
+    if (result.isConfirmed) {
+      
+
+      return Swal.fire({
         icon: 'info',
-        showCancelButton: false,
-        showConfirmButton: false,
+        input: 'select',
+        inputOptions: characters.map(character => character.name),
+        title: 'Select your character',
+        showConfirmButton: true,
         allowOutsideClick: false,
         allowEscapeKey: false,
-        timer: 4000,
-        willOpen: () => {
-          Swal.showLoading();
-        },
-        }).then(() => {
-          return Swal.fire({
-            title: `Players Found:${randomName[chosenName]}`,
-            text: 'You are ready to start the game.',
-            icon: 'success',
-            confirmButtonText: 'Start Game',
-            allowOutsideClick:false
-            });
-          }).then((result) => {
-            if(result.isConfirmed){
-              
-              const characters = [
-                { name: 'Cloud', path: 'best.png' },
-                { name: 'Sephiroth', path: 'dark.png' },
-                { name: 'stark', path :'seph.png' },
-                { name: 'Layla', path: 'Terra.png' },
-                  {name:'Noctis',path:'noctis3.png'},{name:'CloudX',path:'cloud2.png'},{name:'Aqua',path:'ley.png'},{name:'NoctisX',path:'noctis.png'},{
-                    name:'NJ',path:'seph4.png'
-                  }];
-                  
-                  const sword = [{
-                    name:'Ultima',path:'sword7.png'
-                  },{name:'buster',path:'buster.png'},
-                  {name:'Soul cutter',path:'burst5.png'},{name:'Gilian',path:'sword6.png'},{name:'death bringer',path:'sword2.png'},{name:"Ragnarok",path:'sword3.png'},{
-                    name:"Automata",path:"fire.png"
-                  }];
-              Swal.fire({
-                icon:'info',
-                input:'select',
-                inputOptions:characters.map(character => character.name),
-                title:'Select your character',
-               showConfirmButton:true,
-               allowOutsideClick:false,
-               allowEscapeKey:false
-               
-               
-              }).then((result) => {
-                if(result.isConfirmed){
-                  
-                  const selectedIndex = result.value;
-                  
-                const lot = new SpeechSynthesisUtterance(characters[selectedIndex].name);
-                  speechSynthesis.speak(lot);
-                  
-                  
-                  const lap = document.getElementById("best");
-                  
-                  if (selectedIndex >= 0 && selectedIndex < characters.length) {
-                    // Set the src attribute using the selected index
-                    lap.src = characters[selectedIndex].path;
-                  }
-                  
-                  Swal.fire({
-                    icon:'info',
-                    input:'select',
-                    title:'Select weapon',
-                    inputOptions:sword.map(character => character.name),
-                    showConfirmButton:true,
-                    allowEscapeKey:false,
-                    allowOutsideClick:false
-                  }).then((result) => {
-                    if(result.isConfirmed){
-                      
-                     const chose = result.value; 
-                      
-                    const lot2 = new SpeechSynthesisUtterance(sword[chose].name);
-                      speechSynthesis.speak(lot2);
-                      
-                      
-                      const lap2 = document.getElementById("sword");
-                      
-                      if (chose>= 0 && chose < sword.length) {
-                        // Set the src attribute using the selected index
-                        lap2.src = sword[chose].path;
-                      }
-                      
-                      background = [
-                        {name:'dispair',path:'fan.jpg'},{name:'Purge',path:'blood2.jpg'},
-                        {name:'Tale of vigor',path:'got.jpg'},{name:'Transfiguration',path:'wall.jpeg'},{name:'Tenebre',path:'wall2.jpeg'},{name:'Resolve',path:'wall3.jpg'},{name:'Mondstat',path:'wall4.jpg'},{name:'Sumeru',path:'wall5.jpg'}];
-                      Swal.fire({
-                        icon:'info',
-                        input:'select',
-                        title:'Select Background',
-                        inputOptions:background.map(character => character.name),
-                        allowOutsideClick:false,
-                        allowEscapeKey:false
-                      }).then((result) => {
-                        if(result.isConfirmed){
-                          let pic = document.getElementById("text");
-                          let mine = result.value;
-                          pic.style.backgroundImage = `url(${background[mine].path})`;
-                        
-                      //});
-                      const lot4 = new SpeechSynthesisUtterance(background[mine].name);
-                      speechSynthesis.speak(lot4);
-                        }
-                      
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'loading...please wait!',
-                        showConfirmButton: false,
-                        allowEscapeKey:false,
-                   allowOutsideClick:false,
-                        willOpen: () => {
-                          Swal.showLoading();
-                        },
-                        timer: 3000
-                      }).then(() => {
-                        Work();
-                      });
-                      });
-                      
-                      }
-                    });
-                  }
-                  
-              });
-            
-            
-            }else{
-              
-            }
-          });
-        
-   //   });
-     
-        setTimeout(function() {
-          hideLoader();
-        }, 4000);
-        document.getElementById("loader").style.display = "flex";
-       }
-    
+      });
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const selectedIndex = result.value;
+      const lot = new SpeechSynthesisUtterance(characters[selectedIndex].name);
+      speechSynthesis.speak(lot);
+
+      const lap = document.getElementById("best");
+
+      if (selectedIndex >= 0 && selectedIndex < characters.length) {
+        lap.src = characters[selectedIndex].path;
+      }
+
+      return Swal.fire({
+        icon: 'info',
+        input: 'select',
+        title: 'Select weapon',
+        inputOptions: sword.map(character => character.name),
+        showConfirmButton: true,
+        allowEscapeKey: false,
+        allowOutsideClick: false
+      });
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const chose = result.value;
+      const lot2 = new SpeechSynthesisUtterance(sword[chose].name);
+      speechSynthesis.speak(lot2);
+
+      const lap2 = document.getElementById("sword");
+
+      if (chose >= 0 && chose < sword.length) {
+        lap2.src = sword[chose].path;
+      }
+
+      
+      return Swal.fire({
+        icon: 'info',
+        input: 'select',
+        title: 'Select Background',
+        inputOptions: background.map(character => character.name),
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      });
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let pic = document.getElementById("text");
+      let mine = result.value;
+      pic.style.backgroundImage = `url(${background[mine].path})`;
+
+      const lot4 = new SpeechSynthesisUtterance(background[mine].name);
+      speechSynthesis.speak(lot4);
+    }
+
+    return Swal.fire({
+      icon: 'info',
+      title: 'loading...please wait!',
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      willOpen: () => {
+        Swal.showLoading();
+      },
+      timer: 3000
+    });
+  }).then(() => {
+    Work();
+  });
+
+  setTimeout(function() {
+    hideLoader();
+  }, 4000);
+  document.getElementById("loader").style.display = "flex";
+  
+}
 
     function hideLoader() {
         document.getElementById("loader").style.display = "none";
